@@ -4,4 +4,4 @@
 
 layout: home
 ---
-I am an MSc student about to graduate from the Imperial College London (Applied Machine Learning). My GPA at imperial is 73 (UK system) (A). The ranking is 5/28. Before my MSc, I finished my bachelor's degree at the University of Electronic Science and Technology of China (UESTC), where I ranked 6% and scored 89.85/100. I was awarded the Outstanding Graduate Award of Sichuan Province. 
+I am an MSc student about to graduate from the Imperial College London (Applied Machine Learning). My GPA at imperial is 73 (UK system) (A). The ranking is 5/28. Before my MSc, I finished my bachelor's degree at the University of Electronic Science and Technology of China (UESTC), where I ranked 6% and scored 89.85/100. I was awarded the Outstanding Graduate Award of Sichuan Province. :D
