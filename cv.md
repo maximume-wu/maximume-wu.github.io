@@ -10,5 +10,5 @@ Hi, welcome to download my full C.V. here!! :D
 
 <ul>
 	<li><a href="{{ site.github.url }}/cv/C.V_EN_Wu_Jing.pdf">CV</a> (English Version)</li>
-	<li><a href="{{ site.github.url }}/cv/C.V_Wu_Jing_CN.pdf">Short Version Resume</a> (Chinese Version; A Short Resume)</li>
+	<li><a href="{{ site.github.url }}/cv/C.V_CN_Wu_Jing.pdf">Short Version Resume</a> (Chinese Version; A Short Resume)</li>
 </ul>
