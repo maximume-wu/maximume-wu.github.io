@@ -32,9 +32,10 @@ github_username:  jingwu2121
 
 # Build settings
 # theme: minima
-theme: academic-jekyll-theme
+remote_theme: LeNPaul/academic
 plugins:
   - jekyll-feed
+  - jekyll-remote-theme
 
 # Exclude from processing.
 # The following items will not be processed, by default.
