@@ -35,7 +35,7 @@ github_username:  jingwu2121
 # theme: academic-jekyll-theme
 remote_theme: maximume-wu/academic
 plugins:
-  - jekyll-feed
+  # - jekyll-feed
   - jekyll-remote-theme
 
 # Exclude from processing.
