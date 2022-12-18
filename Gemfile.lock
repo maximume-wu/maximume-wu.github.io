@@ -1,18 +1,8 @@
-PATH
-  remote: .
-  specs:
-    jekyll-theme-chirpy (5.3.2)
-      jekyll (~> 4.1)
-      jekyll-archives (~> 2.2)
-      jekyll-paginate (~> 1.1)
-      jekyll-redirect-from (~> 0.16)
-      jekyll-seo-tag (~> 2.7)
-      jekyll-sitemap (~> 1.4)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    academic-jekyll-theme (1.0.0)
+    jekyll-paginate (1.1.0)
       jekyll (~> 4.2)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
