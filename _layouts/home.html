@@ -1,62 +1,94 @@
 ---
-layout: default
+layout: page
+# The Home page layout
 ---
 
+{% assign pinned = site.posts | where: "pin", "true" %}
+{% assign default = site.posts | where_exp: "item", "item.pin != true and item.hidden != true" %}
 
-<div class="row g-5 mb-5">
-  <div class="col-md-0">
-    <h3 class="fw-bold">ShortBio</h3>
-    {{ content }}
-  </div>
-  <!-- <div class="col-md-6">
-    <img src="{{ site.github.url }}/assets/img/home.jpg" alt="Home" width="100%">
-  </div> -->
-</div>
+{% assign posts = "" | split: "" %}
 
-<!-- {% include publications.html %} -->
+<!-- Get pinned posts -->
 
-<!-- <div class="row g-5 mb-5">
-  <div class="col-md-12">
-    <h3 class="fw-bold border-bottom pb-0 mb-5">News</h3>
-    {% for post in site.posts %}
-      <p><a href="{{ site.github.url }}/{{ post.url }}">{{ post.title }}</a> - {{ post.date | date: "%B %-d, %Y" }}</p>
-    {% endfor %}
-  </div>
-</div> -->
+{% assign offset = paginator.page | minus: 1 | times: paginator.per_page %}
+{% assign pinned_num = pinned.size | minus: offset %}
 
-<div class="row g-5 mb-5">
-  <div class="col-md-0">
-    <h3 class="fw-bold">Research Interests</h3>
-    <li> Computer Vision (Segmentation, Tracking)</li>
-    <li> Machine Learning, Deep Learning</li>
-    <li> Medical Imaging</li>
-  </div>
-</div>
+{% if pinned_num > 0 %}
+  {% for i in (offset..pinned.size) limit: pinned_num %}
+    {% assign posts = posts | push: pinned[i] %}
+  {% endfor %}
+{% else %}
+  {% assign pinned_num = 0 %}
+{% endif %}
 
-<div class="row g-5 mb-5">
-  <div class="col-md-0">
-    <h3 class="fw-bold">News</h3>
-    <li><i>11. 2022</i> - I am awarded MSc in Applied Machine Learning with Distinction!! </li>
-    <li><i>09. 2022</i> - I will be doing a research internship at SUTD (Singapore) as a visiting researcher! </li>
-    <!-- <li><i>Month. Year</i> - This list is scrollable, with most recent updates at the top. -->
-  </div>
-</div>
+<!-- Get default posts -->
 
+{% assign default_beg = offset | minus: pinned.size %}
 
-<div class="row g-5 mb-5">
-  <div class="col-md-0">
-    <h3 class="fw-bold">Education</h3>
-    <li>Imperial College London [ICL] <i> (10. 2021 - 10. 2022)</i>
-      <ul>
-      <li> MSc. Applied Machine Learning   </li> 
-      </ul>
-    </li>
-     
-    <li>University of Electronic Science and Technology of China [UESTC] <i>(09. 2017 - 06. 2021)</i>
-      <ul>
-        <li> BEng. Electronic Information Engineering   </li> 
-      </ul>
-    </li>
-  </div>
-</div>
+{% if default_beg < 0 %}
+  {% assign default_beg = 0 %}
+{% endif %}
 
+{% assign default_num = paginator.posts | size | minus: pinned_num  %}
+{% assign default_end = default_beg | plus: default_num | minus: 1 %}
+
+{% if default_num > 0 %}
+  {% for i in (default_beg..default_end) %}
+    {% assign posts = posts | push: default[i] %}
+  {% endfor %}
+{% endif %}
+
+<div id="post-list">
+
+{% for post in posts %}
+
+  <div class="post-preview">
+    <h1>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        {% include no-linenos.html content=post.content %}
+        {{ content | markdownify | strip_html | truncate: 200 | escape }}
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex">
+      <div class="mr-auto">
+
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        {% include datetime.html date=post.date %}
+
+        <!-- categories -->
+        {% if post.categories.size > 0 %}
+          <i class="far fa-folder-open fa-fw"></i>
+          <span>
+          {% for category in post.categories %}
+            {{ category }}
+            {%- unless forloop.last -%},{%- endunless -%}
+          {% endfor %}
+          </span>
+        {% endif %}
+
+      </div>
+
+      {% if post.pin %}
+      <div class="pin">
+        <i class="fas fa-thumbtack fa-fw"></i>
+        <span>{{ site.data.locales[site.lang].post.pin_prompt }}</span>
+      </div>
+      {% endif %}
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+{% endfor %}
+
+</div> <!-- #post-list -->
+
+{% if paginator.total_pages > 0 %}
+  {% include post-paginator.html %}
+{% endif %}
