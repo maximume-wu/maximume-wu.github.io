@@ -293,13 +293,16 @@ NAVBAR
 
 */
 .navbar-95{
-    
     background: silver;
     margin: 0;
     border: 1px outset #fff;
     min-height: 40px;
     padding: 0 6px;
     color:#212529;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
 }
 
 .navbar-brand{
@@ -360,6 +363,7 @@ FOOTER
     margin-right: 0px;
     position: absolute;
     bottom: 0;
+    position: fixed;
 }
 .taskbar .start-button {
     cursor: default;
